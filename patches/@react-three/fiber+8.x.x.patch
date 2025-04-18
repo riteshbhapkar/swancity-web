@@ -1,0 +1,12 @@
+diff --git a/node_modules/@react-three/fiber/dist/events-9ea6854d.esm.js b/node_modules/@react-three/fiber/dist/events-9ea6854d.esm.js
+index 1234567..abcdefg 100644
+--- a/node_modules/@react-three/fiber/dist/events-9ea6854d.esm.js
++++ b/node_modules/@react-three/fiber/dist/events-9ea6854d.esm.js
+@@ -1,6 +1,7 @@
+ import * as React from 'react';
++import { act } from 'react-dom/test-utils';
+ 
+-const { useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo, useContext, useReducer, forwardRef, createContext, Children, useImperativeHandle, createElement, act } = React;
++const { useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo, useContext, useReducer, forwardRef, createContext, Children, useImperativeHandle, createElement } = React;
+ 
+ // Rest of the file...
