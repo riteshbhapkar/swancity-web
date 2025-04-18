@@ -73,8 +73,8 @@ export default function Testimonials() {
                       <h3 className="text-2xl font-bold text-white mb-6">
                         {testimonials[currentIndex].company}
                       </h3>
-                      <p className="text-gray-400 text-lg">
-                        "{testimonials[currentIndex].quote}"
+                      <p className="text-gray-300 text-lg">
+                        &ldquo;SwanCity has transformed how we engage with clients. Their AI-driven approach has increased our conversion rates by 40%.&rdquo;
                       </p>
                     </div>
                     <div className="grid grid-cols-2 gap-4 mt-8">

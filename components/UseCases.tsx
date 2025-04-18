@@ -140,7 +140,9 @@ export default function UseCases() {
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
               <div className="relative p-6 bg-black rounded-lg border border-gray-800">
                 <h3 className="text-xl font-bold text-white mb-4">{feature.title}</h3>
-                <p className="text-gray-400 mb-6">{feature.description}</p>
+                <p className="text-gray-400 mb-4">
+                  Here&apos;s how professionals are using SwanCity to transform their client interactions.
+                </p>
                 <div className="space-y-3">
                   {feature.metrics.map((metric) => (
                     <div key={metric.label} className="flex items-center justify-between">
@@ -156,4 +158,4 @@ export default function UseCases() {
       </div>
     </section>
   );
-} 
+}
