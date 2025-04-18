@@ -284,23 +284,35 @@ function TetrisVisualization() {
       
       {/* Board grid matching border color */}
       {Array.from({ length: boardWidth - 1 }).map((_, i) => (
-        <line key={`grid-vertical-${i}`} position={[0, 0, -0.54]}>
-          <bufferGeometry attach="geometry" args={[new Float32Array([
-            i + 1, 0, 0,
-            i + 1, boardHeight, 0
-          ]), 3]} />
-          <lineBasicMaterial attach="material" color="#00ffff" opacity={0.3} transparent />
-        </line>
+        <group key={`grid-vertical-${i}`} position={[0, 0, -0.54]}>
+          <lineSegments>
+            <bufferGeometry>
+              <bufferAttribute
+                attach="attributes-position"
+                count={2}
+                array={new Float32Array([i + 1, 0, 0, i + 1, boardHeight, 0])}
+                itemSize={3}
+              />
+            </bufferGeometry>
+            <lineBasicMaterial color="#00ffff" opacity={0.3} transparent />
+          </lineSegments>
+        </group>
       ))}
       
       {Array.from({ length: boardHeight - 1 }).map((_, i) => (
-        <line key={`grid-horizontal-${i}`} position={[0, 0, -0.54]}>
-          <bufferGeometry attach="geometry" args={[new Float32Array([
-            0, i + 1, 0,
-            boardWidth, i + 1, 0
-          ]), 3]} />
-          <lineBasicMaterial attach="material" color="#00ffff" opacity={0.3} transparent />
-        </line>
+        <group key={`grid-horizontal-${i}`} position={[0, 0, -0.54]}>
+          <lineSegments>
+            <bufferGeometry>
+              <bufferAttribute
+                attach="attributes-position"
+                count={2}
+                array={new Float32Array([0, i + 1, 0, boardWidth, i + 1, 0])}
+                itemSize={3}
+              />
+            </bufferGeometry>
+            <lineBasicMaterial color="#00ffff" opacity={0.3} transparent />
+          </lineSegments>
+        </group>
       ))}
       
       {/* Board outline - enhanced with brighter glow */}
