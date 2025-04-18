@@ -612,7 +612,7 @@ export default function Hero() {
 
 // Add post-processing effects for a more futuristic look
 function Effects() {
-  const { scene, camera } = useThree();
+  const { /* scene, camera */ } = useThree();
   const particlesRef = useRef<THREE.Points>(null);
   const dataStreamsRef = useRef<THREE.Group>(null);
   const ringsRef = useRef<THREE.Group>(null);
