@@ -102,7 +102,7 @@ export default function UseCases() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            What's the{' '}
+            What&apos;s the{' '}
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               magic
             </span>{' '}
