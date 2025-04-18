@@ -80,7 +80,7 @@ function TetrisVisualization() {
     // Create the new piece - always start at the top
     const newPiece = {
       shape: shapeIndex,
-      position: [startX, 0], // Start at the top of the board
+      position: [startX, 0] as [number, number], // Add type assertion here
       rotation: randomRotation
     };
     
@@ -90,16 +90,16 @@ function TetrisVisualization() {
     } else {
       // Instead of clearing rows, try to place the piece higher up
       // This preserves all blocks on the board
-      if (canMoveTo(newPiece.shape, [startX, -1], newPiece.rotation)) {
-        setCurrentPiece({...newPiece, position: [startX, -1]});
-      } else if (canMoveTo(newPiece.shape, [startX, -2], newPiece.rotation)) {
-        setCurrentPiece({...newPiece, position: [startX, -2]});
+      if (canMoveTo(newPiece.shape, [startX, -1] as [number, number], newPiece.rotation)) {
+        setCurrentPiece({...newPiece, position: [startX, -1] as [number, number]});
+      } else if (canMoveTo(newPiece.shape, [startX, -2] as [number, number], newPiece.rotation)) {
+        setCurrentPiece({...newPiece, position: [startX, -2] as [number, number]});
       } else {
         // MODIFIED: Instead of clearing the top row, try a different position or shape
         // Try a different X position
         for (let x = 0; x < boardWidth - 3; x++) {
-          if (canMoveTo(newPiece.shape, [x, 0], newPiece.rotation)) {
-            setCurrentPiece({...newPiece, position: [x, 0]});
+          if (canMoveTo(newPiece.shape, [x, 0] as [number, number], newPiece.rotation)) {
+            setCurrentPiece({...newPiece, position: [x, 0] as [number, number]});
             return;
           }
           // Try a different rotation
