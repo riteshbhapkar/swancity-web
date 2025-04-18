@@ -229,6 +229,7 @@ function TetrisVisualization() {
               count={2}
               array={new Float32Array([i, 0, -0.4, i, boardHeight, -0.4])}
               itemSize={3}
+              args={[new Float32Array([i, 0, -0.4, i, boardHeight, -0.4]), 3]}
             />
           </bufferGeometry>
           <lineBasicMaterial attach="material" color="#00ffff" opacity={0.15} transparent />
@@ -243,6 +244,7 @@ function TetrisVisualization() {
               count={2}
               array={new Float32Array([0, i, -0.4, boardWidth, i, -0.4])}
               itemSize={3}
+              args={[new Float32Array([0, i, -0.4, boardWidth, i, -0.4]), 3]}
             />
           </bufferGeometry>
           <lineBasicMaterial attach="material" color="#00ffff" opacity={0.15} transparent />
