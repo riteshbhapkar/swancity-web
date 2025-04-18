@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useMemo, useCallback } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -18,7 +18,7 @@ const SHAPES = [
 
 function TetrisVisualization() {
   const groupRef = useRef<THREE.Group>(null);
-  const { camera, scene } = useThree();
+  const { camera } = useThree();
   
   // Game state
   const [board, setBoard] = useState<number[][]>([]);
