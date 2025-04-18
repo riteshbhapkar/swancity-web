@@ -223,20 +223,28 @@ function TetrisVisualization() {
       {/* Grid lines moved to background with lower opacity */}
       {Array.from({ length: boardWidth + 1 }).map((_, i) => (
         <line key={`vertical-${i}`}>
-          <bufferGeometry attach="geometry" args={[new Float32Array([
-            i, 0, -0.4,
-            i, boardHeight, -0.4
-          ]), 3]} />
+          <bufferGeometry>
+            <bufferAttribute
+              attach="attributes-position"
+              count={2}
+              array={new Float32Array([i, 0, -0.4, i, boardHeight, -0.4])}
+              itemSize={3}
+            />
+          </bufferGeometry>
           <lineBasicMaterial attach="material" color="#00ffff" opacity={0.15} transparent />
         </line>
       ))}
       
       {Array.from({ length: boardHeight + 1 }).map((_, i) => (
         <line key={`horizontal-${i}`}>
-          <bufferGeometry attach="geometry" args={[new Float32Array([
-            0, i, -0.4,
-            boardWidth, i, -0.4
-          ]), 3]} />
+          <bufferGeometry>
+            <bufferAttribute
+              attach="attributes-position"
+              count={2}
+              array={new Float32Array([0, i, -0.4, boardWidth, i, -0.4])}
+              itemSize={3}
+            />
+          </bufferGeometry>
           <lineBasicMaterial attach="material" color="#00ffff" opacity={0.15} transparent />
         </line>
       ))}
