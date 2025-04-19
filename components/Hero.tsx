@@ -716,7 +716,7 @@ function Effects() {
         );
         
         // Pulse color intensity
-        const material = stream.material as THREE.MeshBasicMaterial;
+        const material = (stream as THREE.Mesh).material as THREE.MeshBasicMaterial;
         material.opacity = 0.3 + Math.sin(t * 1.5) * 0.2 + 0.2;
       });
     }
@@ -737,11 +737,13 @@ function Effects() {
         );
         
         // Pulse color intensity
-        const material = ring.material as THREE.MeshStandardMaterial;
-        if (material.emissiveIntensity) {
-          material.emissiveIntensity = 1.5 + Math.sin(t * 1.2) * 0.5;
+        if (ring instanceof THREE.Mesh && ring.material) {
+          const material = ring.material as THREE.MeshBasicMaterial;
+          if ('emissiveIntensity' in material) {
+            material.emissiveIntensity = 1.5 + Math.sin(t * 1.2) * 0.5;
+          }
+          material.opacity = 0.4 + Math.sin(t * 1.2) * 0.2;
         }
-        material.opacity = 0.4 + Math.sin(t * 1.2) * 0.2;
       });
     }
   });
