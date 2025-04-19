@@ -2,8 +2,9 @@
 
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
+import TetrisGLTF from './TetrisGLTF';
 
 // Tetris piece shapes and colors - updated with more vibrant neon colors
 const SHAPES = [
@@ -584,17 +585,31 @@ export default function Hero() {
           </div>
         </div>
 
+       
         {/* Tetris Visualization Section */}
         <div className="hidden lg:block w-1/2 h-[500px] relative">
           <Canvas camera={{ position: [0, 0, 40], fov: 38 }}>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1} />
-            <TetrisVisualization />
-            <Effects />
-            <PulsingCore />
-            <OscillatingCamera 
-              speed={0.2} 
-              amplitude={0.52} // This is approximately 30 degrees
+            
+            {/* Increased size of the glTF model and moved down */}
+            <group scale={[10, 10, 10]} position={[0, -8, 0]}>
+              <TetrisGLTF />
+            </group>
+            
+            {/* Simple background and lighting for the glTF */}
+            <mesh position={[0, 0, -15]}>
+              <planeGeometry args={[120, 120]} />
+              <meshBasicMaterial color="#000020" transparent opacity={0.2} />
+            </mesh>
+            
+            {/* Simple camera controls */}
+            <OrbitControls
+              enableZoom={false}
+              enablePan={false}
+              enableRotate={true}
+              autoRotate={true}
+              autoRotateSpeed={0.5}
               minPolarAngle={Math.PI / 3}
               maxPolarAngle={Math.PI / 2}
             />
