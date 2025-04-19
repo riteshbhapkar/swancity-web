@@ -1,23 +1,10 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useEffect, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
 import TetrisGLTF from './TetrisGLTF';
 import FallingBlocks from './FallingBlocks';
-
-// Tetris piece shapes and colors - updated with more vibrant neon colors
-const SHAPES = [
-  { blocks: [[0, 0], [1, 0], [0, 1], [1, 1]], color: "#00ffff" }, // O - Brighter cyan
-  { blocks: [[0, 0], [1, 0], [2, 0], [3, 0]], color: "#ff00ff" }, // I - Magenta
-  { blocks: [[0, 0], [0, 1], [1, 1], [2, 1]], color: "#00ff8c" }, // L - Neon green
-  { blocks: [[2, 0], [0, 1], [1, 1], [2, 1]], color: "#ff3d00" }, // J - Neon orange
-  { blocks: [[1, 0], [2, 0], [0, 1], [1, 1]], color: "#ffff00" }, // S - Neon yellow
-  { blocks: [[0, 0], [1, 0], [1, 1], [2, 1]], color: "#8c00ff" }, // Z - Neon purple
-  { blocks: [[1, 0], [0, 1], [1, 1], [2, 1]], color: "#00a2ff" }  // T - Neon blue
-];
-
 
 export default function Hero() {
   const [isScrolled, setIsScrolled] = useState(false);
