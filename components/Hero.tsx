@@ -222,33 +222,37 @@ function TetrisVisualization() {
     <group ref={groupRef} position={[offsetX, offsetY, 0]}>
       {/* Grid lines moved to background with lower opacity */}
       {Array.from({ length: boardWidth + 1 }).map((_, i) => (
-        <line key={`vertical-${i}`}>
-          <bufferGeometry>
-            <bufferAttribute
-              attach="attributes-position"
-              count={2}
-              array={new Float32Array([i, 0, -0.4, i, boardHeight, -0.4])}
-              itemSize={3}
-              args={[new Float32Array([i, 0, -0.4, i, boardHeight, -0.4]), 3]}
-            />
-          </bufferGeometry>
-          <lineBasicMaterial attach="material" color="#00ffff" opacity={0.15} transparent />
-        </line>
+        <group key={`vertical-${i}`}>
+          <lineSegments>
+            <bufferGeometry>
+              <bufferAttribute
+                attach="attributes-position"
+                count={2}
+                array={new Float32Array([i, 0, -0.4, i, boardHeight, -0.4])}
+                itemSize={3}
+                args={[new Float32Array([i, 0, -0.4, i, boardHeight, -0.4]), 3]}
+              />
+            </bufferGeometry>
+            <lineBasicMaterial color="#00ffff" opacity={0.15} transparent />
+          </lineSegments>
+        </group>
       ))}
       
       {Array.from({ length: boardHeight + 1 }).map((_, i) => (
-        <line key={`horizontal-${i}`}>
-          <bufferGeometry>
-            <bufferAttribute
-              attach="attributes-position"
-              count={2}
-              array={new Float32Array([0, i, -0.4, boardWidth, i, -0.4])}
-              itemSize={3}
-              args={[new Float32Array([0, i, -0.4, boardWidth, i, -0.4]), 3]}
-            />
-          </bufferGeometry>
-          <lineBasicMaterial attach="material" color="#00ffff" opacity={0.15} transparent />
-        </line>
+        <group key={`horizontal-${i}`}>
+          <lineSegments>
+            <bufferGeometry>
+              <bufferAttribute
+                attach="attributes-position"
+                count={2}
+                array={new Float32Array([0, i, -0.4, boardWidth, i, -0.4])}
+                itemSize={3}
+                args={[new Float32Array([0, i, -0.4, boardWidth, i, -0.4]), 3]}
+              />
+            </bufferGeometry>
+            <lineBasicMaterial color="#00ffff" opacity={0.15} transparent />
+          </lineSegments>
+        </group>
       ))}
       
       {/* Board background - enhanced with more depth and glow */}
@@ -412,23 +416,37 @@ function TetrisVisualization() {
       
       {/* Enhanced grid lines with better visibility */}
       {Array.from({ length: boardWidth + 1 }).map((_, i) => (
-        <line key={`vertical-${i}`}>
-          <bufferGeometry attach="geometry" args={[new Float32Array([
-            i, 0, 0,
-            i, boardHeight, 0
-          ]), 3]} />
-          <lineBasicMaterial attach="material" color="#00ffff" opacity={0.3} transparent />
-        </line>
+        <group key={`enhanced-vertical-${i}`}>
+          <lineSegments>
+            <bufferGeometry>
+              <bufferAttribute
+                attach="attributes-position"
+                count={2}
+                array={new Float32Array([i, 0, 0, i, boardHeight, 0])}
+                itemSize={3}
+                args={[new Float32Array([i, 0, 0, i, boardHeight, 0]), 3]}
+              />
+            </bufferGeometry>
+            <lineBasicMaterial color="#00ffff" opacity={0.3} transparent />
+          </lineSegments>
+        </group>
       ))}
       
       {Array.from({ length: boardHeight + 1 }).map((_, i) => (
-        <line key={`horizontal-${i}`}>
-          <bufferGeometry attach="geometry" args={[new Float32Array([
-            0, i, 0,
-            boardWidth, i, 0
-          ]), 3]} />
-          <lineBasicMaterial attach="material" color="#00ffff" opacity={0.3} transparent />
-        </line>
+        <group key={`enhanced-horizontal-${i}`}>
+          <lineSegments>
+            <bufferGeometry>
+              <bufferAttribute
+                attach="attributes-position"
+                count={2}
+                array={new Float32Array([0, i, 0, boardWidth, i, 0])}
+                itemSize={3}
+                args={[new Float32Array([0, i, 0, boardWidth, i, 0]), 3]}
+              />
+            </bufferGeometry>
+            <lineBasicMaterial color="#00ffff" opacity={0.3} transparent />
+          </lineSegments>
+        </group>
       ))}
       
       {/* Enhanced lighting */}
@@ -880,7 +898,17 @@ function PulsingCore() {
 }
 
 // Custom camera controller that oscillates between -amplitude and +amplitude
-function OscillatingCamera({ speed = 0.5, amplitude = 0.52, minPolarAngle, maxPolarAngle }) {
+function OscillatingCamera({ 
+  speed = 0.5, 
+  amplitude = 0.52, 
+  minPolarAngle, 
+  maxPolarAngle 
+}: { 
+  speed?: number; 
+  amplitude?: number; 
+  minPolarAngle?: number; 
+  maxPolarAngle?: number;
+}) {
   const { camera } = useThree();
   const initialPosition = useRef(new THREE.Vector3().copy(camera.position));
   
